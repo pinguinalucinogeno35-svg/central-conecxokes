@@ -195,6 +195,10 @@
 
         <p class="result-status" id="resultStatus" role="status" aria-live="polite"></p>
         <div class="product-grid" id="productGrid"></div>
+        <div class="load-more" id="loadMoreWrap" hidden>
+          <p id="loadMoreInfo"></p>
+          <button class="btn btn-outline" type="button" id="loadMore"><svg class="ico" aria-hidden="true"><use href="#i-chevron"/></svg><span>Mostrar mais produtos</span></button>
+        </div>
 
         <div class="empty-state" id="emptyState" hidden>
           <svg class="ico" aria-hidden="true"><use href="#i-busca"/></svg>
@@ -398,6 +402,8 @@
           <summary>Ver a mensagem que será enviada<svg class="ico" aria-hidden="true"><use href="#i-chevron"/></svg></summary>
           <pre id="messagePreview" class="message-preview" tabindex="0"></pre>
         </details>
+
+        <p class="legal-note" id="legalNote">O pedido é uma solicitação de orçamento, não uma compra. Ao tocar em enviar, o WhatsApp abre com a mensagem pronta e você confirma o envio.</p>
       </div>
 
       <footer class="cart-foot">
@@ -406,10 +412,9 @@
           <svg class="ico" aria-hidden="true"><use href="#i-whats"/></svg>Enviar pedido pelo WhatsApp
         </a>
         <div class="cart-foot-row">
-          <button class="btn btn-link" type="button" id="copyMessage"><svg class="ico" aria-hidden="true"><use href="#i-copiar"/></svg>Copiar mensagem</button>
-          <button class="btn btn-link btn-danger" type="button" id="clearCart"><svg class="ico" aria-hidden="true"><use href="#i-lixeira"/></svg>Limpar lista</button>
+          <button class="btn btn-link" type="button" id="copyMessage" aria-label="Copiar mensagem"><svg class="ico" aria-hidden="true"><use href="#i-copiar"/></svg><span class="btn-label">Copiar mensagem</span></button>
+          <button class="btn btn-link btn-danger" type="button" id="clearCart"><svg class="ico" aria-hidden="true"><use href="#i-lixeira"/></svg><span class="btn-label">Limpar lista</span></button>
         </div>
-        <p class="legal-note">O pedido é uma solicitação de orçamento, não uma compra. Ao tocar em enviar, o WhatsApp abre com a mensagem pronta e você confirma o envio.</p>
       </footer>
     </div>
   </dialog>

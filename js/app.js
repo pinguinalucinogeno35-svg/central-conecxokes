@@ -10,6 +10,7 @@
   const STORAGE_KEY = 'cdc_lista_v1';
   const QTY_MIN = 1;
   const QTY_MAX = 9999;
+  const PAGE_SIZE = 12;
 
   const $ = (sel, root = document) => root.querySelector(sel);
   const $$ = (sel, root = document) => Array.from(root.querySelectorAll(sel));
@@ -111,7 +112,8 @@
   const state = {
     cart: Array.isArray(saved?.items) ? saved.items.filter(isValidItem) : [],
     orderId: saved?.orderId || newOrderId(),
-    filters: { cat: '', line: '', size: '', q: '' }
+    filters: { cat: '', line: '', size: '', q: '' },
+    visible: PAGE_SIZE
   };
 
   function isValidItem(item) {
@@ -340,11 +342,19 @@
     ]);
   }
 
-  function renderProducts() {
+  function renderProducts({ append = false } = {}) {
     const list = filteredProducts();
     const grid = $('#productGrid');
-    grid.replaceChildren(...list.map(productCard));
+    if (!append) state.visible = PAGE_SIZE;
+    const shown = list.slice(0, state.visible);
+    if (append) grid.append(...shown.slice(grid.children.length).map(productCard));
+    else grid.replaceChildren(...shown.map(productCard));
     $('#emptyState').hidden = list.length > 0;
+
+    const remaining = list.length - shown.length;
+    $('#loadMoreWrap').hidden = remaining <= 0;
+    $('#loadMoreInfo').textContent = `Mostrando ${shown.length} de ${list.length}`;
+    $('#loadMore').lastElementChild.textContent = `Mostrar mais ${Math.min(remaining, PAGE_SIZE)} ${remaining === 1 ? 'produto' : 'produtos'}`;
 
     const { cat, q, size, line } = state.filters;
     const parts = [plural(list.length, 'produto', 'produtos')];
@@ -479,12 +489,13 @@
     if (count) { badge.classList.remove('pop'); void badge.offsetWidth; badge.classList.add('pop'); }
 
     $('#cartSummary').textContent = count
-      ? `${plural(count, 'item', 'itens')} · ${plural(cartUnits(), 'peça', 'peças')} · Pedido ${state.orderId}`
+      ? `${plural(count, 'item', 'itens')} · ${plural(cartUnits(), 'peça', 'peças')}\nPedido ${state.orderId}`
       : 'Nenhum item adicionado';
     $('#cartEmpty').hidden = count > 0;
     $('#cartItems').replaceChildren(...state.cart.map(cartItemRow));
     $('#customerForm').hidden = count === 0;
     $('.preview').hidden = count === 0;
+    $('#legalNote').hidden = count === 0;
     $('.cart-foot').classList.toggle('is-empty', count === 0);
     updateMessage();
   }
@@ -638,13 +649,13 @@
       if (!state.cart.length) return;
       if (!clearArmed) {
         clearArmed = true;
-        clearBtn.lastChild.textContent = 'Toque de novo para limpar';
-        clearTimer = setTimeout(() => { clearArmed = false; clearBtn.lastChild.textContent = 'Limpar lista'; }, 4000);
+        clearBtn.querySelector('.btn-label').textContent = 'Toque de novo para limpar';
+        clearTimer = setTimeout(() => { clearArmed = false; clearBtn.querySelector('.btn-label').textContent = 'Limpar lista'; }, 4000);
         return;
       }
       clearTimeout(clearTimer);
       clearArmed = false;
-      clearBtn.lastChild.textContent = 'Limpar lista';
+      clearBtn.querySelector('.btn-label').textContent = 'Limpar lista';
       clearCart();
       setStatus('Lista limpa.', '');
     });
@@ -670,6 +681,13 @@
       if (state.filters.cat) setCategory('');
       $('#catalogo').scrollIntoView({ behavior: prefersReducedMotion() ? 'auto' : 'smooth' });
       headerSearch.blur();
+    });
+    $('#loadMore').addEventListener('click', () => {
+      const first = $('#productGrid').children.length;
+      state.visible += PAGE_SIZE;
+      renderProducts({ append: true });
+      const next = $('#productGrid').children[first];
+      if (next) next.querySelector('select, input, button')?.focus({ preventScroll: true });
     });
     $('#lineFilter').addEventListener('change', (e) => { state.filters.line = e.target.value; renderProducts(); });
     $('#sizeFilter').addEventListener('change', (e) => { state.filters.size = e.target.value; renderProducts(); });
