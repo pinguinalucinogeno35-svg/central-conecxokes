@@ -1,0 +1,23 @@
+﻿Área,Campo,Valor de referência,Status/Evidência,Ação obrigatória,Conduta no starter
+Identidade,Nome comercial,Central das Conexões,CAPTURA / COLETA,Confirmar grafia oficial e uso em materiais,Usar como nome provisório no site
+Identidade,Logo,Marca geométrica branca e azul sobre preto,CAPTURA VISUAL,Solicitar arquivo SVG/PNG oficial e autorização,Apenas recorte da captura no starter
+Identidade,Cores,"Azul, branco, preto vistos no avatar",CAPTURA VISUAL,Confirmar paleta e tipografias oficiais,Hex do design system é aproximação
+Contato,Instagram,@cdasconexoes,CAPTURA VISUAL,Confirmar URL e autorização,Link público no footer
+Contato,Telefone,(73) 3223-2082,COLETA NÃO VERIFICADA,Confirmar se número pertence à empresa,Texto demonstrativo sinalizado como informação a confirmar
+Contato,WhatsApp,Não confirmado,PENDENTE,Solicitar número comercial correto,Botão externo bloqueado por padrão
+Local,Endereço,"Av. Oduvaldo Evaristo Bacelar, 180 — São Francisco, Ilhéus/BA",COLETA NÃO VERIFICADA,Confirmar endereço e CEP,Apenas dado informativo na demo
+Local,CEP,45657-721,COLETA NÃO VERIFICADA,Confirmar CEP,Não publicar sem aprovação
+Local,Horários,Não definidos,PENDENTE,Pedir dias/horários e feriados,Não exibir
+Operação,Entrega grátis,Divulgada na bio do Instagram,COLETA / CAPTURA,"Confirmar áreas, pedido mínimo, limites",Usar frase neutra “consulte condições”
+Operação,Meios de pagamento,Não confirmados,PENDENTE,Confirmar Pix/cartão/boleto etc.,Não exibir claims de pagamento
+Operação,Prazo de atendimento,Não confirmado,PENDENTE,Confirmar política comercial,Não prometer rapidez em minutos
+Catálogo,Categorias,Tubos; Conexões; Registros e válvulas; Caixas d’água; Vedação e acessórios; Materiais diversos,MOCKUP CONCEITUAL,Validar catálogo real e terminologia da loja,Usar apenas como navegação do conceito
+Catálogo,Fotos de produtos,Recortes ilustrativos de mockup por IA,ILUSTRATIVO,Substituir por fotos reais e permissões de uso,Não vincular imagem a SKU específico
+Catálogo,Preços,"Aparecem no mockup, NÃO SÃO DADOS REAIS",INVENTADO PELO MOCKUP,Receber tabela de preços real e rotina de atualização,Nenhum preço no starter
+Catálogo,Estoque,Não confirmado,PENDENTE,Integrar catálogo ou confirmar processo manual,Nunca escrever “em estoque”
+Catálogo,Marcas de fabricantes,Não confirmadas,PENDENTE,Solicitar autorização e lista real,Não usar logos de terceiros
+Comercial,Checkout/compra online,Não contratado / não confirmado,PENDENTE,Decidir catálogo/orçamento/e-commerce,Starter orientado a orçamento
+Comercial,Lista de orçamento,Modelo recomendado pela ONE,PROPOSTA,Validar comportamento com responsável da loja,Habilitado apenas como demonstração
+Prova social,Nota Google,"5,0 com 3 avaliações segundo coleta inicial",COLETA NÃO VERIFICADA,Verificar perfil real e data da nota,Não usar nota ou depoimentos no site
+Operação,Domínio e hospedagem,Não confirmados,PENDENTE,Definir domínio e acesso,Sem URL inventada
+Legal,Privacidade/LGPD,Não definida,PENDENTE,"Definir controlador, tratamento e política",Não publicar coleta de leads em backend
